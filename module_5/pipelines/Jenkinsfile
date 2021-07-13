@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         REGISTRY_PASSWORD_1 = credentials('REGISTRY_PASSWORD_1')
-        group='rg-devops-sura-jpfranco1-dev-dev'
+        group='rg-devops-sura-jpfranco1-dev'
         location='southcentralus'
         registry='crdevopssurajpfranco1dev'
         registry_url='https://crdevopssurajpfranco1dev.azurecr.io'
