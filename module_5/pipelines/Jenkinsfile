@@ -37,10 +37,10 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') { 
+        stage('Delivery') { 
             steps {
                 // 
-                echo 'Deploying'
+                echo 'Deliverying'
                 withCredentials([azureServicePrincipal('20366f9c-6690-4f46-90ab-dff49dd09938')]) {
                     sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
                     sh '''
