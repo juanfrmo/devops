@@ -52,12 +52,19 @@ CMD ["nginx", "-g", "daemon off;"]
 EOF'''
                     sh 'docker build -f fe-devops-sura-jpfranco1-dev/Dockerfile -t $image fe-devops-sura-jpfranco1-dev'
                     sh 'docker login $registry_url -u crdevopssurajpfranco1dev -p $REGISTRY_PASSWORD_1'
-                    sh 'docker push $image'
-                    sh 'az configure --defaults group=$group location=$location'
-                    sh 'az webapp create --plan $plan --name $app --deployment-container-image-name $image'
-                    sh 'az webapp config container set --name $app --docker-custom-image-name $image --docker-registry-server-url $registry_url'    
+                    sh 'docker push $image'   
                 }
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                // 
+                echo 'Deploying'
+                sh 'az configure --defaults group=$group location=$location'
+                sh 'az webapp create --plan $plan --name $app --deployment-container-image-name $image'
+                sh 'az webapp config container set --name $app --docker-custom-image-name $image --docker-registry-server-url $registry_url'   
             }
         }
     }
 }
+
